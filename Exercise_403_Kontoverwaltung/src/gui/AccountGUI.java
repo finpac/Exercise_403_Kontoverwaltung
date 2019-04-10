@@ -17,7 +17,8 @@ public class AccountGUI extends javax.swing.JFrame {
      * Creates new form AccountGUI
      */
     
-    Account acc;
+    private Account acc;
+    
     public AccountGUI() {
         initComponents();
         acc = new Account();
@@ -119,8 +120,7 @@ public class AccountGUI extends javax.swing.JFrame {
         catch(Exception ex)
         {
             ex.printStackTrace();
-        }
-       
+        }     
     }//GEN-LAST:event_onAddUser
 
     private void onAccountTest(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onAccountTest
