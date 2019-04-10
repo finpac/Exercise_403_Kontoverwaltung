@@ -14,6 +14,11 @@ import javax.swing.AbstractListModel;
  */
 public class Account extends AbstractListModel{
     private final ArrayList <String> kontoBenutzer = new ArrayList();
+    
+    public void add(String name) {
+        kontoBenutzer.add(name);
+    }
+    
     @Override
     public int getSize() {
         return kontoBenutzer.size(); 
@@ -21,7 +26,9 @@ public class Account extends AbstractListModel{
 
     @Override
     public Object getElementAt(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return kontoBenutzer.get(index);
     }
+
+    
     
 }

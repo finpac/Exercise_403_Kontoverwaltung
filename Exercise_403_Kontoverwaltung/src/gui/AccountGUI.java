@@ -5,6 +5,8 @@
  */
 package gui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Patrick
@@ -19,7 +21,7 @@ public class AccountGUI extends javax.swing.JFrame {
     public AccountGUI() {
         initComponents();
         acc = new Account();
-//        jList1.setModel(acc);
+        liUser.setModel(acc);
     }
 
     /**
@@ -38,22 +40,32 @@ public class AccountGUI extends javax.swing.JFrame {
         micreateAcc = new javax.swing.JMenuItem();
         lbMoney = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        liUser = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taOutput = new javax.swing.JTextArea();
 
         miaddUser.setText("add user");
         miaddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miaddUserActionPerformed(evt);
+                onAddUser(evt);
             }
         });
         pmAddUser.add(miaddUser);
 
         miperformAccTest.setText("perform account test");
+        miperformAccTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onAccountTest(evt);
+            }
+        });
         pmAddUser.add(miperformAccTest);
 
         micreateAcc.setText("create new account");
+        micreateAcc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onCreateAccount(evt);
+            }
+        });
         pmAccount.add(micreateAcc);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,35 +85,53 @@ public class AccountGUI extends javax.swing.JFrame {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(110, 130));
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder("User"));
-        jList1.setModel(new Account());
-        jList1.setComponentPopupMenu(pmAddUser);
-        jList1.setMaximumSize(new java.awt.Dimension(110, 120));
-        jList1.setMinimumSize(new java.awt.Dimension(80, 103));
-        jList1.setPreferredSize(new java.awt.Dimension(40, 103));
-        jScrollPane1.setViewportView(jList1);
+        liUser.setBorder(javax.swing.BorderFactory.createTitledBorder("User"));
+        liUser.setComponentPopupMenu(pmAddUser);
+        liUser.setMaximumSize(new java.awt.Dimension(110, 120));
+        liUser.setMinimumSize(new java.awt.Dimension(80, 103));
+        liUser.setPreferredSize(new java.awt.Dimension(40, 103));
+        jScrollPane1.setViewportView(liUser);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.LINE_START);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder("Log-output"));
-        jTextArea1.setComponentPopupMenu(pmAccount);
-        jTextArea1.setMaximumSize(new java.awt.Dimension(1700, 2147483647));
-        jTextArea1.setMinimumSize(new java.awt.Dimension(500, 43));
-        jTextArea1.setPreferredSize(new java.awt.Dimension(1000, 115));
-        jScrollPane2.setViewportView(jTextArea1);
+        taOutput.setColumns(20);
+        taOutput.setRows(5);
+        taOutput.setBorder(javax.swing.BorderFactory.createTitledBorder("Log-output"));
+        taOutput.setComponentPopupMenu(pmAccount);
+        taOutput.setMaximumSize(new java.awt.Dimension(1700, 2147483647));
+        taOutput.setMinimumSize(new java.awt.Dimension(500, 43));
+        taOutput.setPreferredSize(new java.awt.Dimension(1000, 115));
+        jScrollPane2.setViewportView(taOutput);
 
         getContentPane().add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void miaddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miaddUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_miaddUserActionPerformed
+    private void onAddUser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onAddUser
+        try{
+            String name = JOptionPane.showInputDialog("Name", "");
+            acc.add(name);
+            liUser.updateUI();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+       
+    }//GEN-LAST:event_onAddUser
+
+    private void onAccountTest(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onAccountTest
+        
+        
+    }//GEN-LAST:event_onAccountTest
+
+    private void onCreateAccount(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onCreateAccount
+        double startMoney = 50.00;
+        lbMoney.setText(startMoney + " Euro");
+    }//GEN-LAST:event_onCreateAccount
 
     /**
      * @param args the command line arguments
@@ -139,15 +169,15 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbMoney;
+    private javax.swing.JList<String> liUser;
     private javax.swing.JMenuItem miaddUser;
     private javax.swing.JMenuItem micreateAcc;
     private javax.swing.JMenuItem miperformAccTest;
     private javax.swing.JPopupMenu pmAccount;
     private javax.swing.JPopupMenu pmAddUser;
+    private javax.swing.JTextArea taOutput;
     // End of variables declaration//GEN-END:variables
 }
